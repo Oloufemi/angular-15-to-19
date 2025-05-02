@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# TUTORIALS 
+
+### Add existing project to github repository
+* Create a GitHub repository for the existing project.
+* Perform a git init command in the root folder of the existing project.
+* Add all of the existing project’s files to the Git index and then commit.
+* Add the GitHub repo as a remote reference for the existing project with this : 
+   git remote add origin git@github_repo_url
+   git branch -M main
+   git push -u origin main
+
