@@ -37,3 +37,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
    git branch -M main
    git push -u origin main
 
+### Switch Angular CLI version
+* [tutorial_link](https://indepthcoder.medium.com/maintain-different-versions-of-angular-cli-on-the-same-machine-6828df198f59)
