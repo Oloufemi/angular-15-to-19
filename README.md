@@ -39,3 +39,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Switch Angular CLI version
 * [tutorial_link](https://indepthcoder.medium.com/maintain-different-versions-of-angular-cli-on-the-same-machine-6828df198f59)
+
+### RxJS
+* [intro](https://youtu.be/FITI5ASi6dQ?si=EqTl6MdROEYuEPog)
+* [useful_link_1](https://kevin-tale.medium.com/tout-ce-que-je-sais-sur-rxjs-partie-2-a092c3d920a6)
+* [useful_link_2](https://makina-corpus.com/front-end/mise-en-pratique-rxjs-angular)
+* Pipe : create a pipeline; Literally create a pipeline in which a series of transformations can 
+be applied to data. 
+* Tap (do) : Opérateur uitlitaire qu'on utilisera juste pour consulter la donnée, aucune transformation 
+possible. [useful_link](https://javascript.plainenglish.io/mastering-the-rxjs-tap-operator-in-angular-real-life-examples-776ba8bedf15)
+* Map : Prend les données émises au niveau de la source et applique une fonction qui transformera 
+chacune d'elle. [useful_link](https://medium.com/@yuvidev/rxjs-operator-21-map-operator-3e980876b735)
+* Mergemap : Une première valeur émet un observable et on veut cette valeur de l'observable
+pour générer un nouvel observable. Utiliser la sortie d'un observable en entrée d'un autre
+* toArray : transformer un flux de plusieurs données en un tableau unique de données. [useful_link](https://rxjs.fr/transform/toarray.html)
+* 
