@@ -3,7 +3,7 @@ export interface League {
   name: string;
   description:string;
   division:string;
-  logo:string;
+  logoUrl:string;
   sport: string;
-  website:string;
+  websiteUrl:string;
 }

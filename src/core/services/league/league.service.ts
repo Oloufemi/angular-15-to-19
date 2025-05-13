@@ -52,11 +52,12 @@ export class LeagueService {
     return {
       id:league.idLeague,
       name:league.strLeague,
-      logo:league.strLogo,
+      logoUrl:league.strLogo,
       description:league.strDescriptionEN,
       division: league.intDivision,
       sport: league.strSport,
-      website: league.strWebsite
+      websiteUrl: league.strWebsite
     }
   }
 }
+
