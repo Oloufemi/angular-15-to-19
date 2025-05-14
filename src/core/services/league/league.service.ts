@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {from, map, mergeMap, Observable, toArray} from "rxjs";
+import {catchError, from, map, mergeMap, Observable, of, throwError, toArray} from "rxjs";
 import {League} from "../../models/league";
+import {ErrorsHandler} from "../../models/errors";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class LeagueService {
     return this.http.get<any>(`${this.baseUrl}all_leagues.php`);
   }
 
-  findPlayerLeagues(playerName:string, playerTeamName:string):Observable<League[]> {
+  findPlayerLeagues(playerName:string, playerTeamName:string):Observable<League[]|ErrorsHandler> {
     return this.http.get<any>(`${this.baseUrl}searchplayers.php?p=${playerName}`).pipe(
       mergeMap((result) => {
         const foundPlayer = result.player.filter((player:any) => {
@@ -44,7 +45,19 @@ export class LeagueService {
       toArray(),
       map((result:any[]) => {
         return result.map((league) => this.fromAnyToLeague(league.leagues[0]));
-      })
+      }),
+      catchError((err) => {
+        const errorMessageValue:string = err.toString();
+        if(errorMessageValue.includes('Cannot read properties of null (reading \'filter\')') || errorMessageValue.includes('Cannot read properties of undefined (reading \'strTeam\')')){
+          const error: ErrorsHandler = {
+            code:1,
+            messageToDisplay:'There is no player matching that name in the team.Either player name or team name is incorrect'
+          };
+          return of(error);
+        } else {
+          return throwError(err);
+        }
+      }),
     );
   }
 

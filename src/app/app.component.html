@@ -52,4 +52,7 @@
     </table>
 
   </div>
+  <div *ngIf="errorMessage !== '' && !displayTable">
+    <p>{{errorMessage}}</p>
+  </div>
 </div>

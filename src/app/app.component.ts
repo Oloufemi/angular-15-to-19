@@ -17,6 +17,7 @@ export class AppComponent{
   leaguesToDisplay:League[] = [];
   displayTable = false;
   displayedColumns: string[] = ['name', 'division', 'sport','logo'];
+  errorMessage: string = '';
   constructor(private leagueService:LeagueService, private fb:FormBuilder) {
   }
 
@@ -24,11 +25,18 @@ export class AppComponent{
     const player:string = this.searchForm.controls['playerName'].value;
     const team:string = this.searchForm.controls['playerTeamName'].value;
     this.leaguesToDisplay = [];
-    this.leagueService.findPlayerLeagues(player,team).subscribe((result:any) => {
-      //console.log(result);
-      this.leaguesToDisplay = [...result];
-      this.isTableDisplayable();
-    });
+    this.leagueService.findPlayerLeagues(player,team).subscribe(
+      (result:any) => {
+        if(!result.code){
+          this.errorMessage = '';
+          this.leaguesToDisplay = [...result];
+          this.isTableDisplayable();
+        } else {
+          this.displayTable = false;
+          this.errorMessage = result.messageToDisplay;
+        }
+      }
+    );
   }
 
   isTableDisplayable():void {
