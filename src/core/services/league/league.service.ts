@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {catchError, from, map, mergeMap, Observable, of, tap, throwError, toArray} from "rxjs";
+import {catchError, from, map, mergeMap, Observable, of, throwError, toArray} from "rxjs";
 import {League} from "../../models/league";
 import {ErrorsHandler} from "../../models/errors-handler";
 
