@@ -53,4 +53,4 @@ chacune d'elle. [useful_link](https://medium.com/@yuvidev/rxjs-operator-21-map-o
 * Mergemap : Une première valeur émet un observable et on veut cette valeur de l'observable
 pour générer un nouvel observable. Utiliser la sortie d'un observable en entrée d'un autre
 * toArray : transformer un flux de plusieurs données en un tableau unique de données. [useful_link](https://rxjs.fr/transform/toarray.html)
-* 
+* [ErrorHandling](https://blog.angular-university.io/rxjs-error-handling/) 
