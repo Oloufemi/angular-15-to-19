@@ -1,58 +1,77 @@
-<div>
-  <form [formGroup]="searchForm" >
+<mat-tab-group>
+  <mat-tab label="Player leagues">
     <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Player name </mat-label>
-        <input matInput formControlName="playerName" >
-          <mat-error *ngIf="searchForm.controls['playerName'].hasError('required')">required</mat-error>
-          <mat-error *ngIf="searchForm.controls['playerName'].hasError('minlength')">min length is 5</mat-error>
-      </mat-form-field>
+      <form [formGroup]="searchLeagueForm" >
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Player name </mat-label>
+            <input matInput formControlName="playerName" >
+            <mat-error *ngIf="searchLeagueForm.controls['playerName'].hasError('required')">required</mat-error>
+            <mat-error *ngIf="searchLeagueForm.controls['playerName'].hasError('minlength')">min length is 5</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Player team name</mat-label>
+            <input matInput formControlName="playerTeamName" >
+            <mat-error *ngIf="searchLeagueForm.controls['playerTeamName'].hasError('required')">required</mat-error>
+            <mat-error *ngIf="searchLeagueForm.controls['playerTeamName'].hasError('minlength')">min length is 4</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <button type="reset" mat-button >Reset</button>
+          <button type="submit" (click)="searchLeagues()" mat-button [disabled]="!searchLeagueForm.valid" >Search</button>
+        </div>
+      </form>
+      <div *ngIf="displayTable" >
+        <table mat-table [dataSource]="leaguesToDisplay" class="mat-elevation-z8">
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Division Column -->
+          <ng-container matColumnDef="division">
+            <th mat-header-cell *matHeaderCellDef> Division </th>
+            <td mat-cell *matCellDef="let element"> {{element.division}} </td>
+          </ng-container>
+
+          <!-- Sport type Column -->
+          <ng-container matColumnDef="sport">
+            <th mat-header-cell *matHeaderCellDef> Sport </th>
+            <td mat-cell *matCellDef="let element"> {{element.sport}} </td>
+          </ng-container>
+
+          <!-- Logo Column -->
+          <ng-container matColumnDef="logo">
+            <th mat-header-cell *matHeaderCellDef> Logo </th>
+            <td mat-cell *matCellDef="let element"> <img src="{{ element.logoUrl}}" alt="logoUrl" width="200"> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </div>
+      <div *ngIf="errorMessage !== '' && !displayTable">
+        <p>{{errorMessage}}</p>
+      </div>
     </div>
+  </mat-tab>
+  <mat-tab label="Characters">
     <div>
-    <mat-form-field>
-      <mat-label>Player team name</mat-label>
-      <input matInput formControlName="playerTeamName" >
-      <mat-error *ngIf="searchForm.controls['playerTeamName'].hasError('required')">required</mat-error>
-      <mat-error *ngIf="searchForm.controls['playerTeamName'].hasError('minlength')">min length is 4</mat-error>
-    </mat-form-field>
+      <form [formGroup]="searchCharacterForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Character name </mat-label>
+          <input matInput formControlName="characterName" >
+          <mat-error *ngIf="searchCharacterForm.controls['characterName'].hasError('required')">required</mat-error>
+        </mat-form-field>
+        <div>
+          <button type="reset" mat-button >Reset</button>
+          <button type="submit" (click)="searchCharacter()" mat-button [disabled]="!searchCharacterForm.valid" >Search</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <button type="reset" mat-button >Reset</button>
-      <button type="submit" (click)="searchLeagues()" mat-button [disabled]="!searchForm.valid" >Search</button>
-    </div>
-  </form>
-  <div *ngIf="displayTable" >
-    <table mat-table [dataSource]="leaguesToDisplay" class="mat-elevation-z8">
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-
-      <!-- Division Column -->
-      <ng-container matColumnDef="division">
-        <th mat-header-cell *matHeaderCellDef> Division </th>
-        <td mat-cell *matCellDef="let element"> {{element.division}} </td>
-      </ng-container>
-
-      <!-- Sport type Column -->
-      <ng-container matColumnDef="sport">
-        <th mat-header-cell *matHeaderCellDef> Sport </th>
-        <td mat-cell *matCellDef="let element"> {{element.sport}} </td>
-      </ng-container>
-
-      <!-- Logo Column -->
-      <ng-container matColumnDef="logo">
-        <th mat-header-cell *matHeaderCellDef> Logo </th>
-        <td mat-cell *matCellDef="let element"> <img src="{{ element.logoUrl}}" alt="logoUrl" width="200"> </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
-  </div>
-  <div *ngIf="errorMessage !== '' && !displayTable">
-    <p>{{errorMessage}}</p>
-  </div>
-</div>
+  </mat-tab>
+</mat-tab-group>
